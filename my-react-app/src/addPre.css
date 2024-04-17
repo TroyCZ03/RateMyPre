@@ -1,0 +1,11 @@
+ .return-home {
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+     display: flex;
+     color: #FFFFFF;
+     text-shadow: 2px 2px 4px #FFA500;
+     font-style: italic;
+     padding: 10px;
+     position: fixed;
+     top: 60px;
+     right: 20px;
+ }
