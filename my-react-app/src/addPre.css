@@ -1,6 +1,5 @@
 /* Base settings for body to ensure full coverage and centering */
-body,
-html {
+body {
     height: 100%;
     margin: 0;
     display: flex;
@@ -82,8 +81,7 @@ html {
 /* Button styles for actions */
 .nice-button {
     padding: 10px 20px;
-    background-color: #FFA500;
-    color: #FFFFFF;
+     color: #000000;
     border: none;
     border-radius: 25px;
     cursor: pointer;
@@ -94,16 +92,14 @@ html {
 }
 
 /* Return home link styling */
-.return-home {
+.return-home1 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
     color: #FFFFFF;
-    text-shadow: 2px 2px 4px #FFA500;
+    text-shadow: 2px 2px 4px #000000;
     font-style: italic;
     padding: 10px;
     position: fixed;
-    bottom: 10px;
-    /* Closer to the bottom */
-    right: 10px;
-    cursor: pointer;
-    text-decoration: underline;
+    top: 60px;
+    right: 20px;
 }

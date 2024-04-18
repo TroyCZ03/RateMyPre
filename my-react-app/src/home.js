@@ -46,7 +46,7 @@ function Home() {
       {/* Toggle text */}
           <Link to="/addPre">
             <div className="Initial-side">
-              <span style={{cursor: 'pointer', color: '#00F', textDecoration: 'underline'}}>
+              <span style={{cursor: 'pointer', color: '#FFFFFF', textDecoration: 'underline'}}>
                 Can't find your Pre? Click me.
               </span>
             </div>
