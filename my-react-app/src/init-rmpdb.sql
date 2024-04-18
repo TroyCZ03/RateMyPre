@@ -16,12 +16,18 @@ CREATE TABLE IF NOT EXISTS comments (
 
 ALTER TABLE items
 ADD COLUMN price DECIMAL(10, 2),
-ADD COLUMN flavor VARCHAR(255),
 ADD COLUMN caffeine INT,
+ADD COLUMN l_citrulline DECIMAL(10, 2),
+ADD COLUMN beta_alanine DECIMAL(10, 2),
+ADD COLUMN bcaas DECIMAL(10, 2),
+ADD COLUMN creatine_monohydrate DECIMAL(10, 2),
+ADD COLUMN beetroot_extract DECIMAL(10, 2),
+ADD COLUMN pomegranate_extract DECIMAL(10, 2),
+ADD COLUMN l_glutamine DECIMAL(10, 2),
+ADD COLUMN vasodilators VARCHAR(255),
+ADD COLUMN vitamin_b DECIMAL(10, 2),
+ADD COLUMN flavor VARCHAR(255),
 ADD COLUMN serving_size VARCHAR(100),
-ADD COLUMN calories INT,
-ADD COLUMN protein DECIMAL(5, 2),
-ADD COLUMN carbs DECIMAL(5, 2),
-ADD COLUMN sugars DECIMAL(5, 2),
 ADD COLUMN rating DECIMAL(3, 2),
 ADD COLUMN review_count INT;
+

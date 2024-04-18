@@ -6,6 +6,170 @@
      font-style: italic;
      padding: 10px;
      position: fixed;
-     top: 60px;
-     right: 20px;
+     bottom: 650px;
+     right: 120px;
  }
+
+ .New-Background {
+     background-image: url('/public/addition-background.webp');
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-position: center;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     z-index: -1;
+ }
+
+ .Header1 {
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+     display: flex;
+     color: #FFFFFF;
+     text-shadow: 2px 2px 4px #000000;
+     justify-content: center;
+     font-style: italic;
+     padding: 10px;
+ }
+
+
+/* Reuse styles for the form container */
+.formattedform {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50px;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.6);
+    width: 80%;
+   
+     /* Not too wide */
+    display: flex;
+    flex-direction: column;
+    /* Stack inputs vertically */
+    align-items: center;
+    height: 50px;
+    /* Center-align items */
+}
+
+/* Reuse styles for inputs within the form */
+.formInput {
+    border: none;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    
+    width: 250px;
+     background-color: rgba(255, 255, 255, 0.6);
+     padding: 10px;
+    margin: 10px 0;
+    padding-left: 20px;
+     font-size: 18px;
+     border-radius: 25px;
+    color: #000000;
+    text-align: center;
+    text-shadow: 2px 2px 4px #FFFFFF;
+    height: 5px;
+    
+    
+ }
+
+ .niceButton {
+    color: #FFFFFF;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.6);
+    position: fixed;
+    background-color: transparent;
+    bottom: 10px;
+    right: 10px;
+    height: 100px;
+    width: 250px;
+
+
+ }
+
+.Submit-Button {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      display: flex;
+      color: #FFFFFF;
+      text-shadow: 2px 2px 4px #FFA500;
+      font-style: italic;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+        /* Stack inputs vertically */
+      align-items: center;
+      background-color: transparent;
+}
+
+
+.Header3 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 4px #000000;
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    font-style: italic;
+    padding: 10px;
+    
+}
+
+
+.formattedform2 {
+    border-radius: 50px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50px;
+    justify-content: center;
+    
+}
+
+/* Reuse styles for inputs within the form */
+.formInput2 {
+    border: none;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    /* Take up most space inside the form container */
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 10px;
+    margin: 10px 0;
+    padding-left: 20px;
+    /* Spacing between inputs */
+    font-size: 18px;
+    /* Slightly smaller font size than the search input */
+    border-radius: 25px;
+    color: #000000;
+    text-align: center;
+    text-shadow: 2px 2px 4px #FFFFFF;
+    height: 5px;
+
+ }
+
+ .center-container {
+     display: flex;
+     align-items: center;
+      justify-content: center;
+       
+ }
+ .Header4 {
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+     color: #FFFFFF;
+     text-shadow: 2px 2px 4px #000000;
+     position: absolute;
+     font-size: 120%;
+      top: 38%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      text-align: center;
+  }
+
+  
