@@ -35,8 +35,6 @@ function AddPreWorkout() {
 
     return (
         <div className="New-Background">
-            <h2 className="header header--large">Add New Pre-Workout</h2>
-            <h3 className="header header--medium">Common Ingredients</h3>
 
             <form className="formatted-form" onSubmit={handleSubmit}>
                 {Object.entries(formData)
@@ -93,9 +91,7 @@ function AddPreWorkout() {
                 />
             </form>
 
-            <Link to="/">
-                <div className="return-home1">Home Page</div>
-            </Link>
+    
         </div>
     );
 }

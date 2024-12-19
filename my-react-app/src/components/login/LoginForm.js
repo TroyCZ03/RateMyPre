@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import './login.css';
-function LoginForm({ onLogin }) {
+
+// pass default argument even when onLogin not handled 
+function LoginForm({ onLogin = () => {} }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+  
+
 
     const handleSubmit = async (event) => {
+
         event.preventDefault();
+        // TODO, set up to work have to set up actual local host 
         try {
             const response = await fetch('http://localhost:3001/login', {
                 method: 'POST',
@@ -27,25 +33,33 @@ function LoginForm({ onLogin }) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>
+            <label className = "Header2">
                 Email:
                 <input
+                    className = "form-input"
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
             </label>
             <br />
-            <label>
+            <label className = "Header2">
                 Password:
                 <input
+                    className = "form-input"
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </label>
             <br />
-            <button type="submit">Login</button>
+            <button
+                type="submit"
+                className="pretty-log"
+            >
+                Login
+            </button>
+
         </form>
     );
 }

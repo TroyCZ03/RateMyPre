@@ -1,10 +1,10 @@
 import React from 'react';
-import { useRef } from 'react';
+//import { useRef } from 'react';
  
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/HomePage';
-import AddPreWorkout from './components/AddPreWorkout/AddPreWorkoutForm.js';
-import Login from './components/login/LoginForm.js'
+import AddPreWorkout from './pages/AddPreWorkoutPage.js';
+import Login from './pages/LoginPage.js'
 import Navbar from './navbar'; // Make sure the path is correct
 
 function App() {

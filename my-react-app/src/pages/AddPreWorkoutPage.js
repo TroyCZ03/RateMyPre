@@ -4,7 +4,7 @@ import AddPreWorkoutForm from '../components/AddPreWorkout/AddPreWorkoutForm.js'
 import '../components/AddPreWorkout/addPre.css';
 
 
-function AddPreworkoutPage() {
+function AddPreworkoutPage({}) {
     return (
         <div className="New-Background">
             <h2 className="header header--large">Add New Pre-Workout</h2>
