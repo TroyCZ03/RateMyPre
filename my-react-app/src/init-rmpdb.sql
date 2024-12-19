@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS comments (
 );
 
 
+<<<<<<< HEAD
 -- simple table 
 CREATE TABLE IF NOT EXISTS test_table (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -22,6 +23,8 @@ CREATE TABLE IF NOT EXISTS test_table (
 
 
 
+=======
+>>>>>>> 43db2ff31ceec79f3d286e20841a94aad73afcc2
 ALTER TABLE items
 ADD COLUMN price DECIMAL(10, 2),
 ADD COLUMN caffeine INT,
