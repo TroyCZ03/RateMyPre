@@ -122,6 +122,7 @@
     right: 20px;
  }
 
+<<<<<<< HEAD
  .Initial-side2 {
    font-family: Verdana, Geneva, Tahoma, sans-serif;
    display: flex;
@@ -134,6 +135,8 @@
    right: 20px;
  }
 
+=======
+>>>>>>> 43db2ff31ceec79f3d286e20841a94aad73afcc2
  .Close-Button {
    font-family: Verdana, Geneva, Tahoma, sans-serif;
    display: flex;

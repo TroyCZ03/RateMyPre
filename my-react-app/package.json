@@ -38,8 +38,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+<<<<<<< HEAD
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+=======
+>>>>>>> 43db2ff31ceec79f3d286e20841a94aad73afcc2
   }
 }

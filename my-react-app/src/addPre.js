@@ -18,7 +18,11 @@ function AddPreworkout() {
         vasodilators: '',
         vitamin_b: '',
      });
+<<<<<<< HEAD
      // add price per serving and serving 
+=======
+
+>>>>>>> 43db2ff31ceec79f3d286e20841a94aad73afcc2
     const handleChange = (e) => {
         const { name, value } = e.target;
         if (name === 'rating') {
