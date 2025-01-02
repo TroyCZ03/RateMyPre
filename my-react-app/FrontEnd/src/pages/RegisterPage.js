@@ -4,7 +4,7 @@ import RegisterForm from '../components/Register/RegisterForm.js';
 import '../components/Register/register.css';
  
  
-function RegisterPage({}) {
+function RegisterPage() {
     return (
         <div>
             <h2 className="Header1">Register </h2>

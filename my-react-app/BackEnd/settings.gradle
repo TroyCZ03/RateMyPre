@@ -17,4 +17,4 @@ plugins {
 }
 
 rootProject.name = 'BackEnd'
-include('app', 'list', 'utilities')
+include('app')

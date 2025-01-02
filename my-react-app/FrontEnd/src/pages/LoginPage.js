@@ -4,7 +4,7 @@ import LoginForm from '../components/Login/LoginForm.js';
 import '../components/Login/login.css';
 
  
-function LoginPage({ }) {
+function LoginPage() {
     return (
         <div>
             <h2 className="Header1">Login</h2>

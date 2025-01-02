@@ -13,11 +13,16 @@ dependencies {
     // Spring Boot Starter for Core Spring Boot functionality
     implementation 'org.springframework.boot:spring-boot-starter'
 
+    // Allows setting of values for database tables 
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    //Allows me to hash passowrds 
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+
     // Apache Commons Text (Ensure a specific version)
     implementation 'org.apache.commons:commons-text:1.10.0'
 
-    // Project Dependencies
-    implementation project(':utilities')
 
     // Spring Boot Test Starter (for testing purposes)
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -25,7 +30,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'org.example.app.App'
+    mainClass = 'org.App'
 }
 
 tasks.named('test') {

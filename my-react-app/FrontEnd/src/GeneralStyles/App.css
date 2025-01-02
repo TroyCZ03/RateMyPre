@@ -101,14 +101,7 @@
     right: 20px;
  }
 
- .Content {
-   min-height: 100vh;
-   display: flex;
-   color: #000000;
-   font-size: 50px;
-   z-index: 1;
-   font-style: s;
- }
+
 
  .Initial-side {
     font-family: Verdana, Geneva, Tahoma, sans-serif;

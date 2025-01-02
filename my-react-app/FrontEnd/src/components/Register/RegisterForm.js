@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect} from 'react';
 import {faCheck, faTimes, faInfoCircle} from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+//import axios from './api/axios'
 import './register.css';
 
 
@@ -90,6 +91,8 @@ const RegisterForm = () => {
 return  (
         
    <section>
+    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+
     <form onSubmit={handleSubmit}>
         <label className = "Header2" htmlFor="username">Username:
             <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
@@ -170,8 +173,6 @@ return  (
         <button className = "form-input" disabled = {!validName || !validPwd || !validMatch
             ? true: false}>Sign Up</button>
         
-
-       
     </form>
 
    </section> 

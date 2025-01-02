@@ -1,5 +1,16 @@
-# Ignore Gradle project-specific cache directory
-.gradle
+# Java Build Artifacts
+/build/
+*.class
+*.jar
+*.war
+*.ear
+*.log
 
-# Ignore Gradle build output directory
-build
+# IDE Specific
+.idea/
+.vscode/
+*.iml
+
+# Gradle
+.gradle/
+build/

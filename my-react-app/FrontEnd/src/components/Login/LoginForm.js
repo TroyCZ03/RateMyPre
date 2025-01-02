@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './login.css';
+ import './login.css';
 
 // Username Regex: 4-24 characters, starts with a letter, allows letters, numbers, underscores, hyphens
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
