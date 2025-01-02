@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect} from 'react';
 import {faCheck, faTimes, faInfoCircle} from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-//import axios from './api/axios'
+import axios from './api/axios'
 import './register.css';
 
 
@@ -47,10 +47,6 @@ const RegisterForm = () => {
     const[errMsg, setErrMsg] = useState('');
     const[success, setSucess] = useState(false);
 
-     
-
-
-
     useEffect(() => {
         userRef.current.focus();
     }, [])
@@ -79,13 +75,41 @@ const RegisterForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const v1 = USER_REGEX.test(user);
-        const v2 = PWD_REGEX.test(pwd);
-        if(!v1 || !v2) {
-            setErrMsg("Invalid Entry");
-            return;
-        }
+    const isValidName = USER_REGEX.test(user);
+    const isValidEmail = EMAIL_REGEX.test(email);
+    const isValidPwd = PWD_REGEX.test(pwd);
+    if (!isValidName || !isValidEmail || !isValidPwd || pwd !== matchPwd) {
+        setErrMsg("Invalid Entry");
+        return;
     }
+
+    try {
+        const repsponse = await axios.post('http://localhost:8000/api/auth', {
+            username: user,
+            password: pwd,
+            email: email,
+        }, {
+            headers: {
+                'Conent-Type': 'application/json'
+            }
+        
+    });
+        console.log(repsponse.data);
+        setSucess(true);
+        setUser("");
+        setEmail("");
+        setPwd("");
+        setMatchPwd("");
+    } catch (error) {
+        console.error('Registration Failed:', error);
+        if (error.response) {
+            setErrMsg(error.response.data || "Registration Failed");
+        } else {
+            setErrMsg("Registration Failed: Network Error");
+        }
+        errRef.current.focus();
+    }
+};
    
 
 return  (
