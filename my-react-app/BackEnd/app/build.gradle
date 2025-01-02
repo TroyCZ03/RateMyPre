@@ -23,9 +23,15 @@ dependencies {
     // Apache Commons Text (Ensure a specific version)
     implementation 'org.apache.commons:commons-text:1.10.0'
 
+    // jdbc sql server dependency 
+    implementation 'com.microsoft.sqlserver:mssql-jdbc:12.4.2.jre11'
+
 
     // Spring Boot Test Starter (for testing purposes)
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+ 
+ 
+
 }
 
 application {

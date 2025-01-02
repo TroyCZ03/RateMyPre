@@ -90,7 +90,7 @@ const RegisterForm = () => {
             email: email,
         }, {
             headers: {
-                'Conent-Type': 'application/json'
+                'Content-Type': 'application/json'
             }
         
     });
