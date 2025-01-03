@@ -1,5 +1,4 @@
-/* Base settings for body to ensure full coverage and centering */
-body {
+ body {
     height: 100%;
     margin: 0;
     display: flex;
@@ -21,47 +20,36 @@ body {
     flex-grow: 1;
  }
 
-/* Headers with common styles extracted */
-.header {
+
+.Header-Large1{
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+     display: flex;
+     color: #FFFFFF;
+     text-shadow: 2px 2px 4px #000000;
+     justify-content: center;
+     font-style: italic;
+     padding: 10px;
+ }
+
+.Header1 {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #FFFFFF;
     text-shadow: 2px 2px 4px #000000;
-    text-align: center;
+    justify-content: center;
     font-style: italic;
     padding: 10px;
 }
 
-/* Specific header modifications */
-.header--large {
-    font-size: 170%;
-    text-shadow: 2px 2px 4px #000000;
-}
 
-.header--medium {
-    font-size: 120%;
+.Header2 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #FFFFFF;
     text-shadow: 2px 2px 4px #000000;
-}
-
-.header--small {
-    font-size: 120%;
-    text-shadow: 2px 2px 4px #000000;
-}
-
-/* Formatted forms for input groups */
-.formatted-form {
-    border-radius: 50px;
-    padding: 5px;
-    width: 80%;
-    max-width: 600px;
-    /* Maximum width to prevent too wide forms on larger screens */
-    margin: 10px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    font-style: italic;
+    padding: 10px;
 }
-
-/* Inputs within the form with general and specific styles */
+ 
 .form-input {
     border: none;
     outline: none;
@@ -76,6 +64,23 @@ body {
     width: 100%;
     /* Use available space */
 }
+
+.form-button-addPre {
+    background-color: rgba(255, 255, 255, 0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    /* Bright Green */
+    color: white;
+    /* Ensures text is readable */
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+ 
+
 
 /* Button styles for actions */
 .nice-button {
@@ -102,3 +107,26 @@ body {
     top: 60px;
     right: 20px;
 }
+
+ .valid {
+     color: green;
+ }
+
+ .invalid {
+     color: red;
+ }
+
+ .hide {
+    visibility: hidden;
+ }
+
+ .instructionsAP {
+    font-size: 1.0rem;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 4px #000000
+ }
+
+ .offscreen {
+     position: absolute;
+     left: -9999px;
+ }

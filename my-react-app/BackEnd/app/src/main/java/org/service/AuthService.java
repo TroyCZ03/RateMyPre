@@ -1,5 +1,6 @@
 package org.service;
 
+import org.dto.LoginRequest;
 import org.dto.RegisterRequest;
 import org.dto.UserResponse;
 import org.model.User;
@@ -31,6 +32,22 @@ public class AuthService {
         );
         userRepository.save(user);
 
+        return new UserResponse(user.getId(), user.getUsername(), user.getEmail());
+    }
+
+
+    
+    public UserResponse loginUser(LoginRequest request) {
+            // Check if the email exists
+         User user = userRepository.findByEmail(request.getEmail())
+            .orElseThrow(() -> new RuntimeException("No account associated with this Email"));
+
+        // Validate password
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Invalid password");
+        }
+
+        // Return UserResponse on successful login
         return new UserResponse(user.getId(), user.getUsername(), user.getEmail());
     }
 }

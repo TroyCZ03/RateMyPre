@@ -6,8 +6,8 @@ import '../components/AddPreWorkout/addPre.css';
 
 function AddPreworkoutPage() {
     return (
-        <div className="New-Background">
-            <h1 className="header header--large">Add a New Pre-Workout!</h1>
+        <div className="Background-AddPre">
+            <h1 className="Header-Large1">Add a New Pre-Workout!</h1>
             
             {/* Reusable form */}
             <AddPreWorkoutForm />

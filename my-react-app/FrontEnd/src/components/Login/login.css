@@ -55,6 +55,35 @@ body {
 
 }
 
+.form-button-Login {
+    border: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 20px;
+    margin: 10px 0;
+    font-size: 18px;
+    border-radius: 25px;
+    color: #000000;
+    text-align: center;
+    text-shadow: 2px 2px 4px #FFFFFF;
+    width: 100%;
+    /* Use available space */
+}
+
+.disable-Login {
+    border: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    margin: 10px 0;
+    font-size: 18px;
+    border-radius: 25px;
+    color: #000000;
+    text-align: center;
+    text-shadow: 2px 2px 4px #FFFFFF;
+    width: 100%;
+}
+
 
 
 .Header1 {
@@ -85,12 +114,12 @@ body {
   }
 
   .hide {
-      display: none;
+    visibility: hidden;
   }
 
-  .instructions {
+  .instructionsLog {
       font-size: 0.9rem;
-      color: #000000;
+      color: #FFFFFF;
       text-shadow: 1px 1px 2px #000000;
   }
 

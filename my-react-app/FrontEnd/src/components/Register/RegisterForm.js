@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect} from 'react';
 import {faCheck, faTimes, faInfoCircle} from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import axios from './api/axios'
+import axios from 'axios'
 import './register.css';
 
 
@@ -69,47 +69,48 @@ const RegisterForm = () => {
         setErrMsg('');
         console.log(errMsg);
         // error message will clear whenever any of these change 
-    }, [user, pwd, matchPwd])
+    }, [user, email, pwd, matchPwd])
 
     
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-    const isValidName = USER_REGEX.test(user);
-    const isValidEmail = EMAIL_REGEX.test(email);
-    const isValidPwd = PWD_REGEX.test(pwd);
-    if (!isValidName || !isValidEmail || !isValidPwd || pwd !== matchPwd) {
-        setErrMsg("Invalid Entry");
-        return;
-    }
-
-    try {
-        const repsponse = await axios.post('http://localhost:8000/api/auth', {
-            username: user,
-            password: pwd,
-            email: email,
-        }, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        
-    });
-        console.log(repsponse.data);
-        setSucess(true);
-        setUser("");
-        setEmail("");
-        setPwd("");
-        setMatchPwd("");
-    } catch (error) {
-        console.error('Registration Failed:', error);
-        if (error.response) {
-            setErrMsg(error.response.data || "Registration Failed");
-        } else {
-            setErrMsg("Registration Failed: Network Error");
+        const isValidName = USER_REGEX.test(user);
+        const isValidEmail = EMAIL_REGEX.test(email);
+        const isValidPwd = PWD_REGEX.test(pwd);
+        if (!isValidName || !isValidEmail || !isValidPwd || pwd !== matchPwd) {
+            setErrMsg("Invalid Entry");
+            return;
         }
-        errRef.current.focus();
-    }
-};
+
+        try {
+            const repsponse = await axios.post('http://localhost:8000/api/auth/register', {
+                username: user,
+                password: pwd,
+                email: email,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            
+        });
+            console.log(repsponse.data);
+            setSucess(true);
+            setUser("");
+            setEmail("");
+            setPwd("");
+            setMatchPwd("");
+        } catch (error) {
+            console.error('Registration Failed:', error);
+            setSucess(false);
+            if (error.response) {
+                setErrMsg(error.response.data || "Registration Failed");
+            } else {
+                setErrMsg("Registration Failed: Network Error");
+            }
+            errRef.current.focus();
+        }
+    };
    
 
 return  (
@@ -133,7 +134,7 @@ return  (
             onBlur={() => setUserFocus(false)}
             aria-invalid={validName ? "false" : "true"}
         />
-        <p className={userFocus && user && !validName ? "instructions" : "offscreen"}>
+        <p className={userFocus && user && !validName ? "instructionsReg" : "offscreen"}>
             <FontAwesomeIcon icon={faInfoCircle} />
             4 to 24 characters. Must begin with a letter.
         </p>
@@ -152,7 +153,7 @@ return  (
             onBlur={() => setEmailFocus(false)}
             aria-invalid={validEmail ? "false" : "true"}
         />
-        <p className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
+        <p className={emailFocus && email && !validEmail ? "instructionsReg" : "offscreen"}>
             <FontAwesomeIcon icon={faInfoCircle} />
             Must be a valid email address.
         </p>
@@ -171,7 +172,7 @@ return  (
             onBlur={() => setPwdFocus(false)}
             aria-invalid={validPwd ? "false" : "true"}
         />
-        <p className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
+        <p className={pwdFocus && !validPwd ? "instructionsReg" : "offscreen"}>
             <FontAwesomeIcon icon={faInfoCircle} />
             Must include uppercase, lowercase letters, a number, and a special character (8-24 character).
         </p>
@@ -190,13 +191,15 @@ return  (
             onBlur={() => setMatchFocus(false)}
             aria-invalid={validMatch ? "false" : "true"}
         />
-        <p className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
+        <p className={matchFocus && !validMatch ? "instructionsReg" : "offscreen"}>
             <FontAwesomeIcon icon={faInfoCircle} />
             Passwords must match.
         </p>
-        <button className = "form-input" disabled = {!validName || !validPwd || !validMatch
-            ? true: false}>Sign Up</button>
-        
+        <button className = {!validName || !validPwd || !validMatch ? "disable-Register" : "form-button-Register"}
+        >
+            Sign Up
+        </button>
+
     </form>
 
    </section> 

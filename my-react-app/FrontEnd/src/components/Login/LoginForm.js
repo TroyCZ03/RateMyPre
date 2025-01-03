@@ -1,22 +1,24 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
- import './login.css';
+import axios from 'axios'
+import './login.css';
 
-// Username Regex: 4-24 characters, starts with a letter, allows letters, numbers, underscores, hyphens
-const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
+ 
 
-// Password Regex: 8-24 characters, at least one lowercase letter, one uppercase letter, one digit, one special character
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%]).{8,24}$/;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+ 
 const LoginForm = () => {
-    const userRef = useRef();
+    const emailRef = useRef();
+    const pwdRef = useRef();
     const errRef = useRef();
 
     // Username State
-    const [user, setUser] = useState('');
-    const [validName, setValidName] = useState(false);
-    const [userFocus, setUserFocus] = useState(false);
+    const [email, setEmail] = useState('');
+    const [validEmail, setValidEmail] = useState(false);
+    const [emailFocus, setEmailFocus] = useState(false);
 
     // Password State
     const [pwd, setPwd] = useState('');
@@ -29,14 +31,14 @@ const LoginForm = () => {
 
     // Focus on username input on component mount
     useEffect(() => {
-        userRef.current.focus();
+        emailRef.current.focus();
     }, []);
 
     // Validate Username
     useEffect(() => {
-        const isValid = USER_REGEX.test(user);
-        setValidName(isValid);
-    }, [user]);
+        const isValid = EMAIL_REGEX.test(email);
+        setValidEmail(isValid);
+    }, [email]);
 
     // Validate Password
     useEffect(() => {
@@ -47,28 +49,30 @@ const LoginForm = () => {
     // Clear error message when user modifies input
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd]);
+    }, [email, pwd]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         // Final validation before submission
-        const isValidName = USER_REGEX.test(user);
+        const isValidEmail = EMAIL_REGEX.test(email);
         const isValidPwd = PWD_REGEX.test(pwd);
-        if (!isValidName || !isValidPwd) {
+        if (!isValidEmail || !isValidPwd) {
             setErrMsg("Invalid Entry");
             return;
         }
 
-        try {
-            // Replace the following with your login logic (e.g., API call)
-            // Example:
-            // const response = await axios.post('/login', { username: user, password: pwd });
-            // if (response.status === 200) {
-            //     setSuccess(true);
-            // }
-
-            // For demonstration, we'll assume login is successful
-            setSuccess(true);
+        try { const reponse = await axios.post ('http://localhost:8000/api/auth/login', {
+            email: email,
+            password: pwd 
+        }, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+             console.log(reponse.data);
+             setEmail('');
+             setPwd('');
+             setSuccess(true);
         } catch (error) {
             setErrMsg("Login Failed");
             errRef.current.focus();
@@ -89,28 +93,26 @@ const LoginForm = () => {
                     </p>
                     
                     {/* Username Field */}
-                    <label className="Header2" htmlFor="username">
-                        Username:
-                        <FontAwesomeIcon icon={faCheck} className={validName ? "valid" : "hide"} />
-                        <FontAwesomeIcon icon={faTimes} className={validName || !user ? "hide" : "invalid"} />
+                 <label htmlFor="email" className = "Header2">Email:
+                        <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} />
+                        <FontAwesomeIcon icon={faTimes} className={validEmail || !email ? "hide" : "invalid"} />
                     </label>
                     <input
                         className="form-input"
-                        id="username"
-                        type="text"
-                        ref={userRef}
-                        autoComplete="off"
-                        onChange={(e) => setUser(e.target.value)}
-                        value={user}
+                        id="email"
+                        type="email"
+                        ref={emailRef}
+                        onChange={(e) => setEmail(e.target.value)}
+                        value = {email}
                         required
-                        aria-invalid={validName ? "false" : "true"}
-                        aria-describedby="uidnote"
-                        onFocus={() => setUserFocus(true)}
-                        onBlur={() => setUserFocus(false)}
-                    />
-                    <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
+                        aria-invalid={validEmail ? "false" : "true"}
+                        aria-describedby="emNote"
+                        onFocus={() => setEmailFocus(true)}
+                        onBlur={() => setEmailFocus(false)}
+                     />
+                    <p id = "emNote" className={emailFocus && email && !validEmail ? "instructionsLog" : "offscreen"}>
                         <FontAwesomeIcon icon={faInfoCircle} />
-                        4 to 24 characters. Must begin with a letter. Letters, numbers, underscores, hyphens allowed.
+                        Must be a valid email address.
                     </p>
 
                     {/* Password Field */}
@@ -123,6 +125,7 @@ const LoginForm = () => {
                         className="form-input"
                         id="password"
                         type="password"
+                        ref = {pwdRef}
                         onChange={(e) => setPwd(e.target.value)}
                         value={pwd}
                         required
@@ -131,16 +134,15 @@ const LoginForm = () => {
                         onFocus={() => setPwdFocus(true)}
                         onBlur={() => setPwdFocus(false)}
                     />
-                    <p id="pwdnote" className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
+                    <p id="pwdnote" className={pwdFocus && !validPwd ? "instructionsLog" : "offscreen"}>
                         <FontAwesomeIcon icon={faInfoCircle} />
                         8 to 24 characters. Must include uppercase and lowercase letters, a number, and a special character.
                     </p>
 
                     {/* Submit Button */}
-                    <button
+                    <button 
                         type="submit"
-                        className="submit-button"
-                        disabled={!validName || !validPwd}
+                        className= {!validEmail || !validPwd ? "disable-Login" :"form-button-Login"}
                     >
                         Sign In
                     </button>

@@ -1,72 +1,119 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect} from 'react';
+import {faInfoCircle} from "@fortawesome/free-solid-svg-icons"
+import {FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
 import './addPre.css';
 
-function AddPreWorkout() {
-  const [formData, setFormData] = useState({
-    //name: '',
-    UPC_code: '',
-    rating: '',
-  });
+const UPC_REGEX = /^\d{12}$/;
+const RATING_REGEX = /^(10|[1-9])$/;
+
+function AddPreWorkoutForm() {
+  
+
+    const ratingRef = useRef();
+    const upcRef = useRef();
+    const errRef = useRef();
+
+    const[rating, setRating] = useState('');
+    const[validRating, setValidRating] = useState('');
+    const[ratingFocus, setRatingFocus] = useState(false);
+
+    const[UPC_code, setUPC_code] = useState('');
+    const[valid_UPC_code, setValidUPC_code] = useState('');
+    const[UPC_codeFocus, setUPC_codeFocus] = useState(false);
 
 
-  const fieldHandlers = {
-    rating: (value) => Math.max(1, Math.min(10, Number(value))),
-    UPC_code: (value) => value.replace(/\D/g, ''),
-    name: (value) => value.trim(),
-    };
+    const[errMsg, setErrMsg] = useState('');
+    const[success, setSucess] = useState(false);
 
-  const handleChange = (e) => {
-  const { name, value } = e.target;
+    // HOOKS 
+    useEffect(() => {
+      upcRef.current.focus();
+    },[])
 
-  setFormData((prevState) => ({
-    ...prevState,
-    [name]: fieldHandlers[name] ? fieldHandlers[name](value) : value,
-     }));
-    };
+    useEffect(() => {
+      setValidRating(RATING_REGEX.test(rating));
+    }, [rating]) 
+    useEffect(() => {
+      setValidUPC_code(UPC_REGEX.test(UPC_code));
+    }, [UPC_code]) 
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert('Pre-workout form submitted! (Server interaction removed)');
-    console.log('Form Data:', formData);
-  };
+    useEffect(()=> {
+            setErrMsg('');
+            console.log(errMsg);
+            // if error message set to display it will clear again if these fields change 
+        }, [rating, UPC_code])
 
+  
+
+
+      const handleSubmit = async (e) => { 
+              e.preventDefault();
+        /// TODO set up back end, and
+              const isValidUPC = UPC_REGEX.test(UPC_code);
+              const isValidRating = RATING_REGEX.test(rating);
+
+              if(!isValidRating || isValidUPC) {
+                setErrMsg("Invalid Entry");
+                return;
+              }
+               
+       }
+  
+    
+  
+  
   return (
-    <div className="New-Background">
-      <form className="formatted-form" onSubmit={handleSubmit}>
-        
-       
+   <section>
+    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
+      <form onSubmit={handleSubmit}>
+        <label className = "Header1" htmlFor = "UPC_code">UPC_CODE </label>
+          <input
+            className = "form-input"
+            id = "UPC_code"
+            type = "text"
+            ref = {upcRef}
+            autoComplete = "off"
+            placeholder="Enter 12-digit UPC code"
+            onChange = {(e) => setUPC_code(e.target.value)}
+            onFocus = {() => setUPC_codeFocus(true)}
+            onBlur = {() => setUPC_codeFocus(false)}
+            aria-invalid={valid_UPC_code ? "false" : "true"}
+            aria-describedby="upcHelp"
+            />
+            <p id = "upcHelp" className = {"instructionsAP" }>
+              <FontAwesomeIcon icon = {faInfoCircle}/>
+      A UPC Code is a **12-digit numeric code** usually found below a barcode on product packaging.
 
-        <label htmlFor="upc-input" className="header header-small">
-          Enter the UPC code
-          <div className="header header-small">
-            found below product barcode
-          </div>
-        </label>
-        <input
-          id="upc-input"
-          className="form-input"
-          type="string "
-          value={formData.UPC_code}
-          onChange={handleChange}
-          name="UPC_code"
-          placeholder="UPC CODE"
-        />
+            </p>
+          <label className = "Header1" htmlFor = "rating">Rating </label>
+            <input
+              className = "form-input"
+              id = "rating"
+              type = "number"
+              ref = {ratingRef}
+              autoComplete = "off"
+              placeholder = "Rating 1-10"
+              onChange={(e) => setRating(e.target.value)}
+              onFocus = {() => setRatingFocus(true)}
+              onBlur = {() => setRatingFocus(false)}
+              aria-invalid={validRating ? "false" : "true"}
+              aria-describedby="ratingHelp"
+            />
+          <p id = "ratingHelp" className = "instructionsAP">
+              <FontAwesomeIcon icon = {faInfoCircle}/>
+              Must be a number 1-10
+          </p>
 
-        <input
-          className="form-input"
-          type="number"
-          value={formData.rating}
-          onChange={handleChange}
-          name="rating"
-          placeholder="Rating (1-10)"
-        />
+          <button className = {!validRating || !valid_UPC_code ? "hide" : "form-button-addPre"}
+          >
+            Add Pre Wokrout
+          </button>
 
-        <button className="nice-button" type="submit">
-          Add Pre-Workout
-        </button>
       </form>
-    </div>
+
+   </section>
   );
 }
 
-export default AddPreWorkout;
+export default AddPreWorkoutForm;
